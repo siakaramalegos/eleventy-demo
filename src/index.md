@@ -1,3 +1,8 @@
+---
+layout: layout.njk
+title: The Best Eleventy Demo TM
+---
+
 # Yo Eleventy
 
 This site rocks.
