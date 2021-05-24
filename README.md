@@ -73,7 +73,7 @@ Most of those are defaults - change their name in this file if you'd like to use
 **Finally, add some CSS:**
 
 1. Create `/src/style.css`. Add some CSS to that file.
-2. Add `<link rel="stylesheet" href="./style.css">` to the head of `/src/_includes/layout.njk`.
+2. Add `<link rel="stylesheet" href="/style.css">` to the head of `/src/_includes/layout.njk`.
 3. Now we need to tell Eleventy to ["pass through"](https://www.11ty.dev/docs/copy/#manual-passthrough-file-copy-(faster)) any CSS files. We do this in `.eleventy.js`:
   ```diff
   module.exports = function(eleventyConfig) {
@@ -92,3 +92,23 @@ Most of those are defaults - change their name in this file if you'd like to use
     };
   };
   ```
+
+## Step 3: Add a blog
+
+Checkout branch `3-blog` to see this next step. In this step, I create blog posts and an index of those posts.
+
+1. Create a `/src/blog/` folder.
+2. Add our first post in that folder `welcome-to-my-blog.md`, remembering to set the layout and title:
+
+```md
+---
+layout: layout.njk
+title: Welcome to my blog
+---
+
+# Welcome
+
+These are profound thoughts.
+```
+
+We can now access it at http://localhost:8080/blog/welcome-to-my-blog/, but it would be nice to get some links on our home page for all our posts.
