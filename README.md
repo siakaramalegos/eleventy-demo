@@ -111,4 +111,44 @@ title: Welcome to my blog
 These are profound thoughts.
 ```
 
-We can now access it at http://localhost:8080/blog/welcome-to-my-blog/, but it would be nice to get some links on our home page for all our posts.
+We can now access it at http://localhost:8080/blog/welcome-to-my-blog/, but it would be nice to get some links on our home page for all our posts. For that, we should make a [collection](https://www.11ty.dev/docs/collections/) for our blog posts. We will do this using tags.
+
+**Tip**: You can log data to your terminal using the `log` filter which is included in Eleventy for free! For example, `{{ collections | log }}` to see all your collections. Right now, we only have the `all` collection which contains all our pages (home and first blog post).
+
+1. Add a `blog` tag to our blog post's frontmatter:
+  ```diff
+  ---
+  layout: layout.njk
+  title: Welcome to my blog
+  + tags: blog
+  ---
+  ```
+2. Change our `/src/index.md` file to use Nunjucks instead by changing `.md` to `.njk` and changing the current content to html:
+  ```html
+  ---
+  layout: layout.njk
+  title: The Best Eleventy Demo TM
+  ---
+
+  <h1>Yo Eleventy</h1>
+  <p>This site rocks.</p>
+  ```
+3. Render a list of blogs on our index/home page (`/src/index.njk`) usink a [Nunjucks for loop](https://mozilla.github.io/nunjucks/templating.html#for):
+  ```html
+  <ul>
+  {% for post in collections.blog %}
+    <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+  {% endfor %}
+  </ul>
+  ```
+4. Add another post and see it magically appear!
+5. Add a "nav" to your home page so people can get back to it from the blog page. In `/src/_includes/layout.njk` inside the `<body>`:
+  ```html
+  <nav>
+    <a href="/">Home</a>
+  </nav>
+  ```
+
+This is when I'd probably make another layout for a blog post so that the title is automatically rendered in its `<h1>`, but then this baby demo would be longer. :)
+
+Once you've had a chance to play with collections and other forms of data in Eleventy, I recommend you check out my article [Architecting data in Eleventy](https://sia.codes/posts/architecting-data-in-eleventy/) to learn more. It might be a bit much if this is your first time.
