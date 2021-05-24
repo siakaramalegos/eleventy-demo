@@ -7,4 +7,6 @@ title: The Best Eleventy Demo TM
 
 This site rocks.
 
-Let's add a layout and some stylez next.
+Yay layout and stylez!
+
+Let's write a blog so my fans can know what I think.
